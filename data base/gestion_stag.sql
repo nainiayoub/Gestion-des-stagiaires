@@ -1,0 +1,85 @@
+DROP DATABASE IF EXISTS ges_stag;
+CREATE DATABASE IF NOT EXISTS ges_stag;
+USE ges_stag;
+
+
+CREATE TABLE UTILISATEUR (
+	ID int(4) AUTO_INCREMENT PRIMARY KEY,
+	LOGIN VARCHAR(100) NOT NULL,
+	PWD VARCHAR(255) NOT NULL,
+	ROLE VARCHAR(50),
+	EMAIL VARCHAR(255),
+	ETAT INT(1)); 
+-- 	ETAT = 0 désactivé
+-- 	ETAT = 1 activé
+		
+CREATE TABLE STAGIAIRE (
+	ID int(4) AUTO_INCREMENT PRIMARY KEY,
+	NOM VARCHAR(50) NOT NULL,
+	PRENOM VARCHAR(50) NOT NULL,
+	ID_FILIERE int(4),
+    ID_SERVICE int(4),
+	PHOTO VARCHAR(50),
+	CIVILITE VARCHAR(1),
+	DATE_ARRIVE DATE,
+	DATE_DEPART DATE);
+    
+CREATE TABLE SERVICE (                    
+	ID int(4) AUTO_INCREMENT PRIMARY KEY, 
+	NOM_SERVICE VARCHAR(100) NOT NULL);
+
+CREATE TABLE FILIERE (                    
+	ID int(4) AUTO_INCREMENT PRIMARY KEY, 
+	NOM_FILIERE VARCHAR(100) NOT NULL,
+    NIVEAU VARCHAR(100) NOT NULL,
+    ECOLE VARCHAR(100) NOT NULL); 
+
+ALTER TABLE STAGIAIRE ADD constraint fk10 foreign key(ID_FILIERE) references FILIERE(ID);
+ALTER TABLE STAGIAIRE ADD constraint fk11 foreign key(ID_SERVICE) references SERVICE(ID);
+
+INSERT INTO FILIERE(NOM_FILIERE,NIVEAU,ECOLE) VALUES
+	('GI','T.Sup','EST'),
+	('TM','T.Sup','EST'),
+	('TIMQ','T.Sup','EST'),
+	('GIM','T.Sup','EST'),
+    ('GDE','TS','ISTA'),
+    ('C','TS','ISTA'),
+    ('Sec','TS','ISTA'),
+    ('GT','In','ENSA'),
+    ('GP','In','ENSA'),
+    ('GI','In','ENSA'),
+    ('G.Ind','In','ENSA');
+    
+INSERT INTO SERVICE(NOM_SERVICE) VALUES
+	('Système information'),
+	('Commercial'),
+	('Achats'),
+	('Juridique');	
+	
+	
+INSERT INTO UTILISATEUR VALUES 
+	(1,'admin',md5('123'),'ADMIN','nainiaayoub6@gmail.com',1),
+	(2,'user1',md5('123'),'VISITEUR','user1@gmail.com',1),
+	(3,'user2',md5('123'),'VISITEUR','user2@gmail.com',1);	
+
+INSERT INTO STAGIAIRE(NOM,PRENOM,ID_FILIERE,ID_SERVICE,PHOTO,CIVILITE,DATE_ARRIVE,DATE_DEPART) VALUES
+    ('SAADAOUI','MOHAMMED',1,1,'User.png','M','2019-04-01','2019-05-24'),
+	('CHKIRI','OMAR',2,3,'user_green.png','M','2019-04-06','2019-05-30'),
+	('SLIMANI','RACHIDA',3,2,'User.png','F','2019-03-01','2019-05-24'),
+	('FAOUZI','NABILA',4,4,'user_green.png','F','2019-05-01','2019-06-24'),
+    
+    ('SAADAOUI','MOHAMMED',1,1,'User.png','M','2019-04-01','2019-05-24'),
+	('CHKIRI','OMAR',2,3,'user_green.png','M','2019-04-06','2019-05-30'),
+	('SLIMANI','RACHIDA',3,2,'User.png','F','2019-03-01','2019-05-24'),
+	('FAOUZI','NABILA',4,4,'user_green.png','F','2019-05-01','2019-06-24'),
+    
+    ('SAADAOUI','MOHAMMED',1,1,'User.png','M','2019-04-01','2019-05-24'),
+	('CHKIRI','OMAR',2,3,'user_green.png','M','2019-04-06','2019-05-30'),
+	('SLIMANI','RACHIDA',3,2,'User.png','F','2019-03-01','2019-05-24'),
+	('FAOUZI','NABILA',4,4,'user_green.png','F','2019-05-01','2019-06-24');
+    
+SELECT * FROM FILIERE;
+SELECT * FROM STAGIAIRE;
+SELECT * FROM UTILISATEUR;
+    
+    
