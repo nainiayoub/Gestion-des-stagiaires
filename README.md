@@ -1,8 +1,8 @@
 # Interns-Management
 An interns management web application build from scratch for an HR division.<br/><br/>
-Admin<br/><br/>
+__Admin__<br/><br/>
 login : admin<br/>
 password : 123<br/><br/>
-Some users<br/><br/>
+__Some users__<br/><br/>
 login : user1<br/>
 password : 123<br/><br/>
