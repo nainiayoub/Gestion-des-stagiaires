@@ -12,7 +12,6 @@
     $requeteFiliere = "SELECT * FROM filiere";
     
 
-
     if($idfiliere == 0){
         $requeteStagiaire = "SELECT S.ID, NOM, PRENOM, F.NOM_FILIERE, NOM_SERVICE, PHOTO, CIVILITE, DATE_ARRIVE, DATE_DEPART
                     FROM filiere F, stagiaire S, service Ser
@@ -66,37 +65,59 @@
         <?php include("menu.php");?>
     </body>
     <div class="container">
-        <div class="panel panel-success margetop">
-            <div class="panel-heading">Rechercher des stagiaires</div>
-                <div class="panel-body">
-                    <form method="get" action="stagiaires.php" class="form-inline">
-                        <div class="form-group">
-                            <input type="text" name="nomPrenom" placeholder="Nom et prénom" value="<?php echo $nomPrenom;?>" class="form-control">
-                        </div>
-                        <label for="idfiliere">Filière :</label>
-                        <select name="idfiliere" class="form-control" id="idfiliere" onchange="this.form.submit()">
-                            <option value=0>Toutes les filières</option>
-                            <?php while($filiere = $resultatFiliere->fetch()){  ?>
-                                    <option value="<?php echo $filiere["ID"];?>"
-                                            <?php  if($filiere["ID"] === $idfiliere) echo "selected" ?>>
-                                        <?php echo $filiere["NOM_FILIERE"];?>
-                                    </option>
-                            <?php  }  ?>
-                        </select>
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-search"></span> 
-                            Rechercher..
-                        </button>
-                        <?php if($_SESSION['user']['ROLE']=="ADMIN") {?>
-                        &nbsp &nbsp;
-                        <a href="nouveauStagiaire.php"><span class="glyphicon glyphicon-plus"></span> Nouveau stagiaire</a>
-                        <?php } ?>
-                        
-                    </form>
-                </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Liste des stagiaires (<?php echo $nbrStagiaire;?> Stagiaires)</div>
+    <div class="row">
+        <div class="col-sm-6 ">
+            <div class="panel panel-default margetop"  style="border: 5px solid #ddd;">
+                <div class="panel-heading">Rechercher des stagiaires</div>
+                    <div class="panel-body">
+                        <form method="get" action="stagiaires.php" class="form-inline">
+                            <div class="form-group">
+                                <input type="text" name="nomPrenom" placeholder="Nom et prénom" value="<?php echo $nomPrenom;?>" class="form-control">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-search"></span> 
+                                Rechercher..
+                            </button>
+                            <?php if($_SESSION['user']['ROLE']=="ADMIN") {?>
+                            &nbsp &nbsp;
+                            <a href="nouveauStagiaire.php"><span class="glyphicon glyphicon-plus"></span> Nouveau stagiaire</a>
+                            <?php } ?>
+                            
+                        </form>
+                    </div>
+            </div>
+        </diV>
+
+        <div class="col-sm-6 ">
+            <div class="panel panel-default margetop"  style="border: 5px solid #ddd;">
+                <div class="panel-heading">Rechercher des stagiaires</div>
+                    <div class="panel-body">
+                        <form method="get" action="stagiaires.php" class="form-inline">
+                            
+                            <label for="idfiliere">Filière :</label>
+                            <select name="idfiliere" class="form-control" id="idfiliere" onchange="this.form.submit()">
+                                <option value=0>Toutes les filières</option>
+                                <?php while($filiere = $resultatFiliere->fetch()){  ?>
+                                        <option value="<?php echo $filiere["ID"];?>"
+                                                <?php  if($filiere["ID"] === $idfiliere) echo "selected" ?>>
+                                            <?php echo $filiere["NOM_FILIERE"];?>
+                                        </option>
+                                <?php  }  ?>
+                            </select>
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-search"></span> 
+                                Rechercher..
+                            </button>
+                            
+                        </form>
+                    </div>
+            </div>
+        </diV>
+    </div>
+
+        <div class="panel panel-primary" style="border: 5px solid #090d00;">
+            <div class="panel-heading" style="background-color: #090d00; color: #fff">Liste des stagiaires (<?php echo $nbrStagiaire;?> Stagiaires)</div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -133,7 +154,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <ul class="pagination">
+                        <ul class="pagination" style="margin: 0 auto">
                             <?php for($i=1;$i<=$nbrPage;$i++){?>
                                <li class="<?php if($i == $page ) echo 'active';?>">
                                    <a href="stagiaires.php?page=<?php echo $i; ?>&nomS=<?php echo $nomPrenom;?>&idfiliere=<?php echo $idfiliere ?>">

@@ -60,8 +60,8 @@ session_start();
                     </form>
                 </div>
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Liste des utilisateurs (<?php echo $nbrUtilisateur;?> Utilisateurs)</div>
+        <div class="panel panel-primary" style="border: 5px solid #090d00;">
+            <div class="panel-heading" style="background-color: #090d00; color: #fff">Liste des utilisateurs (<?php echo $nbrUtilisateur;?> Utilisateurs)</div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -106,7 +106,7 @@ session_start();
                         </tbody>
                     </table>
                     <div>
-                        <ul class="pagination">
+                        <ul class="pagination" style="margin: 0 auto">
                             <?php for($i=1;$i<=$nbrPage;$i++){?>
                                <li class="<?php if($i == $page ) echo 'active';?>">
                                    <a href="utilisateur.php?page=<?php echo $i; ?>&login=<?php echo $login;?>">

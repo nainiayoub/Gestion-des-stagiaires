@@ -20,8 +20,8 @@
     <body>
         
     <div class="container col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
-            <div class="panel panel-primary margetop">
-                <div class="panel-heading">Se connecter</div>
+            <div class="panel panel-primary margetop" style="border: 4px solid #090d00">
+                <div class="panel-heading" style="background-color: #090d00; border: 4px solid #090d00">Se connecter</div>
                     <div class="panel-body">
                         
                         <form method="post" action="seConnecter.php" class="form" >
@@ -46,9 +46,7 @@
                                 <span class="glyphicon glyphicon-log-in"></span> 
                                 Se connecter..
                             </button>
-                            <br><br>
-                            <a href="initialiserPwd.php">Mot de passe Oublié</a>
-							&nbsp &nbsp	
+                            <br><br>	
                             <a href="nouveauUtilisateur.php">Créer un compte</a> 
                         </form>
 

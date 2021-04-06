@@ -74,8 +74,8 @@
 	<body>		
 		 
 		<div class="container col-lg-4 col-lg-offset-4">
-            <div class="panel panel-primary margetop">
-                <div class="panel-heading">Créer un compte</div>
+            <div class="panel panel-primary margetop" style="border: 4px solid #090d00">
+                <div class="panel-heading" style="background-color: #090d00; border: 4px solid #090d00">Créer un compte</div>
                     <div class="panel-body">
                         
                         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">			

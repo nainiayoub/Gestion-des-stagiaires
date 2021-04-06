@@ -21,14 +21,14 @@
         <meta charset="utf-8">
         <title>Edition d'un utilisateur</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/monstyle.css"
+        <link rel="stylesheet" type="text/css" href="../css/monstyle.css">
     </head>
     <body>
         <?php include("menu.php");?>
         
     <div class="container">
-            <div class="panel panel-primary margetop">
-                <div class="panel-heading">Edition de l'utilisateur</div>
+            <div class="panel panel-primary margetop" style="border: 5px solid #090d00;">
+                <div class="panel-heading" style="background-color: #090d00; color: #fff">Edition de l'utilisateur</div>
                     <div class="panel-body">
                         
                         <form method="post" action="updateUtilisateur.php" class="form" >

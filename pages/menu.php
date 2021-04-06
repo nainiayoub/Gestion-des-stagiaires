@@ -1,15 +1,15 @@
 ﻿<?php
 ?>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="">
+    <div class="container-fluid" style="background-color: #090d00; color: #fff">
         <div class="navbar-header">
-            <a href="../index.php" class="navbar-brand">Gestion des stagières</a>
+            <a href="../index.php" class="navbar-brand">Gérer les stagiaires</a>
         </div>
     <ul class="nav navbar-nav">
-        <li><a href="stagiaires.php">Les stagiaires</a></li>
-        <li><a href="filieres.php">Les filières</a></li>
-        <li><a href="services.php">Les services</a></li>
-        <li><a href="utilisateurs.php">Les utilisateurs</a></li>
+        <li><a href="stagiaires.php">Stagiaires</a></li>
+        <li><a href="filieres.php">Filières</a></li>
+        <li><a href="services.php">Services</a></li>
+        <li><a href="utilisateurs.php">Utilisateurs (géré par l'admin)</a></li>
     </ul>
         
     <ul class="nav navbar-nav navbar-right">
@@ -28,3 +28,4 @@
     </ul>
     </div>
 </nav>
+

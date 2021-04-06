@@ -8,14 +8,14 @@
         <meta charset="utf-8">
         <title>Nouvelle filière</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/monstyle.css"
+        <link rel="stylesheet" type="text/css" href="../css/monstyle.css">
     </head>
     <body>
         <?php include("menu.php");?>
         
     <div class="container">
-            <div class="panel panel-primary margetop">
-                <div class="panel-heading">Veuillez saisir les données de la nouvelle filière</div>
+            <div class="panel panel-primary margetop" style="border: 5px solid #090d00;">
+                <div class="panel-heading" style="background-color: #090d00; color: #fff">Veuillez saisir les données de la nouvelle filière</div>
                     <div class="panel-body">
                         
                         <form method="post" action="insertFiliere.php" class="form">

@@ -9,6 +9,9 @@
     $page = isset($_GET['page'])?$_GET['page']:1;
     $offset = ($page - 1)* $size;
 
+    $requeteChercherParService = "SELECT * FROM service";
+    $resulatChercherParService = $pdo->query($requeteChercherParService);
+
     $requete = "SELECT * FROM service
                 WHERE NOM_SERVICE LIKE '%$nomSer%'
                 limit $size
@@ -43,28 +46,81 @@
         <?php include("menu.php");?>
     </body>
     <div class="container">
-        <div class="panel panel-success margetop">
-            <div class="panel-heading">Rechercher des services</div>
-                <div class="panel-body">
-                    <form method="get" action="services.php" class="form-inline">
-                        <div class="form-group">
-                            <input type="text" name="nomSer" placeholder="Nom du service" value="<?php echo $nomSer;?>" class="form-control">
+    <div class="row">
+        <?php if($_SESSION['user']['ROLE']=="ADMIN") {?>
+            <div class="col-sm-6 ">
+                <div class="panel panel-default margetop" style="border: 5px solid #ddd">
+                    <div class="panel-heading">Rechercher des services</div>
+                        <div class="panel-body">
+                            <form method="get" action="services.php" class="form-inline" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="nomSer">Nom service: </label>
+                                    <input type="text" name="nomSer" placeholder="Nom du service" value="<?php echo $nomSer;?>" class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-search"></span> 
+                                    Rechercher..
+                                </button>
+                            
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-search"></span> 
-                            Rechercher..
-                        </button>
-                        <?php if($_SESSION['user']['ROLE']=="ADMIN") {?>
-                        &nbsp &nbsp;
-                        <a href="nouveauService.php"><span class="glyphicon glyphicon-plus"></span> Nouveau service</a>
-                        <?php } ?>
-                    </form>
                 </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default margetop" style="border: 5px solid #ddd">
+                        <div class="panel-heading">Ajouter des nouveaux services</div>
+                            <div class="panel-body">
+                                
+                                <form method="post" action="insertService.php" class="form-inline" enctype="multipart/form-data">
+                                    
+                                    <div class="form-group">
+                                        <label for="nomService">Nom du service :</label>
+                                        <input type="text" name="nomService" placeholder="Nom du service" class="form-control">
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-save"></span> 
+                                        Enregistrer..
+                                    </button>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+
+            
+                
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Liste des services (<?php echo $nbrService;?> Services)</div>
+
+            
+    </div>
+        <?php }else{ ?>
+            <div class="panel panel-default margetop" style="border: 5px solid #ddd">
+                <div class="panel-heading">Rechercher des services</div>
+                    <div class="panel-body">
+                        <form method="get" action="services.php" class="form-inline" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input type="text" name="nomSer" placeholder="Nom du service" value="<?php echo $nomSer;?>" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-search"></span> 
+                                Rechercher..
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+        <div class="container">
+        
+        <div class="panel panel-default" style="border: 5px solid #090d00;">
+            <div class="panel-heading" style="background-color: #090d00; color: #fff">Liste des services (<?php echo $nbrService;?> Services)</div>
                 <div class="panel-body">
-                    <table class="table table-striped table-bordered">
+
+                    
+
+
+                    <table class="table table-striped table-bordered" style="text-align:">
                         <thead>
                             <tr>
                                 <th>Id service</th><th>Nom service</th>
@@ -93,9 +149,9 @@
                         </tbody>
                     </table>
                     <div>
-                        <ul class="pagination">
+                        <ul class="pagination" style="margin: 0 auto">
                             <?php for($i=1;$i<=$nbrPage;$i++){?>
-                               <li class="<?php if($i == $page ) echo 'active';?>">
+                               <li class="<?php if($i == $page ) echo 'active';?>" >
                                    <a href="services.php?page=<?php echo $i; ?>&nomSer=<?php echo $nomSer;?>&niveau=<?php echo $niveau?>">
                                    <?php echo $i; ?>
                                    </a></li>
@@ -104,5 +160,6 @@
                     </div>
                 </div>
         </div>
+    </div>
     </div>
 </HTML>

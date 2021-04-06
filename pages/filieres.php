@@ -53,36 +53,58 @@
         <?php include("menu.php");?>
     </body>
     <div class="container">
-        <div class="panel panel-success margetop">
-            <div class="panel-heading">Rechercher des filières</div>
-                <div class="panel-body">
-                    <form method="get" action="filieres.php" class="form-inline">
-                        <div class="form-group">
-                            <input type="text" name="nomF" placeholder="Nom de la filière" value="<?php echo $nomF;?>" class="form-control">
-                        </div>
-                        <label for="niveau">Niveau :</label>
-                        <select name="niveau" class="form-control" id="niveau" onchange="this.form.submit()">
-                            <option value="all" <?php if($niveau == "all") echo "selected";?>>Tous les niveaux</option>
-                            <option value="T.Sup" <?php if($niveau == "T.Sup") echo "selected";?>>Technicien supérieur</option>
-                            <option value="TS" <?php if($niveau == "TS") echo "selected";?>>Technicien spécialisé</option>
-                            <option value="L" <?php if($niveau == "L") echo "selected";?>>Licence</option>
-                            <option value="M" <?php if($niveau == "M") echo "selected";?>>Master</option>
-                            <option value="In" <?php if($niveau == "In") echo "selected";?>>Ingénieur</option>
-                        </select>
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-search"></span> 
-                            Rechercher..
-                        </button>
-                        <?php if($_SESSION['user']['ROLE']=="ADMIN") {?>
-                        &nbsp &nbsp;
-                        <a href="nouvelleFiliere.php"><span class="glyphicon glyphicon-plus"></span> Nouvelle filière</a>
-                        <?php } ?>
-                        
-                    </form>
-                </div>
+    <div class="row">
+        <div class="col-sm-6 ">
+            <div class="panel panel-default margetop" style="border: 5px solid #ddd;">
+                <div class="panel-heading">Rechercher par nom de filière</div>
+                    <div class="panel-body">
+                        <form method="get" action="filieres.php" class="form-inline">
+                            <div class="form-group">
+                                <input type="text" name="nomF" placeholder="Nom de la filière" value="<?php echo $nomF;?>" class="form-control">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-search"></span> 
+                                Rechercher..
+                            </button>
+                            <?php if($_SESSION['user']['ROLE']=="ADMIN") {?>
+                            &nbsp &nbsp;
+                            <a href="nouvelleFiliere.php"><span class="glyphicon glyphicon-plus"></span> Nouvelle filière</a>
+                            <?php } ?>
+                            
+                        </form>
+                    </div>
+            </div>
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Liste des filières (<?php echo $nbrFiliere;?> Filières)</div>
+
+        <div class="col-sm-6 ">
+            <div class="panel panel-default margetop" style="border: 5px solid #ddd;">
+                <div class="panel-heading" >Rechercher par niveau de filière</div>
+                    <div class="panel-body">
+                        <form method="get" action="filieres.php" class="form-inline">
+                            <label for="niveau">Niveau :</label>
+                            <select name="niveau" class="form-control" id="niveau" onchange="this.form.submit()">
+                                <option value="all" <?php if($niveau == "all") echo "selected";?>>Tous les niveaux</option>
+                                <option value="T.Sup" <?php if($niveau == "T.Sup") echo "selected";?>>Technicien supérieur</option>
+                                <option value="TS" <?php if($niveau == "TS") echo "selected";?>>Technicien spécialisé</option>
+                                <option value="L" <?php if($niveau == "L") echo "selected";?>>Licence</option>
+                                <option value="M" <?php if($niveau == "M") echo "selected";?>>Master</option>
+                                <option value="In" <?php if($niveau == "In") echo "selected";?>>Ingénieur</option>
+                            </select>
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-search"></span> 
+                                Rechercher..
+                            </button>
+                            
+                        </form>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+        <div class="panel panel" style="border: 5px solid #090d00;">
+            <div class="panel-heading" style="background-color: #090d00; color: #fff">Liste des filières (<?php echo $nbrFiliere;?> Filières)</div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -115,7 +137,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <ul class="pagination">
+                        <ul class="pagination" style="margin: 0 auto">
                             <?php for($i=1;$i<=$nbrPage;$i++){?>
                                <li class="<?php if($i == $page ) echo 'active';?>">
                                    <a href="filieres.php?page=<?php echo $i; ?>&nomF=<?php echo $nomF;?>&niveau=<?php echo $niveau?>">
